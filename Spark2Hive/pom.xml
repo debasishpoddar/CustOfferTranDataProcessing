@@ -1,0 +1,230 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Spark2Hive</groupId>
+  <artifactId>Spark2Hive</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+ <properties>
+
+
+		<java.version>1.8</java.version>
+		<scala.version>2.11.8</scala.version>
+		<scala.binary.version>2.11</scala.binary.version>
+		<project.version>2.2.0</project.version>
+	</properties>
+	
+	
+	<dependencies>
+		<!-- scala-maven-plugin determines the Scala version to use from this dependency -->
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-reflect</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.51</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180130</version>
+		</dependency>
+
+        <!-- Special requirement for maven dependency -->
+ <!-- 		<dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<version>1.8</version>
+			<scope>system</scope>
+			<systemPath>D:\scala_all\jdk1.8.0_144\lib\tools.jar</systemPath>
+		</dependency>   -->
+
+		<!-- https://mvnrepository.com/artifact/jdk.tools/jdk.tools -->
+	<dependency>
+    <groupId>jdk.tools</groupId>
+    <artifactId>jdk.tools</artifactId>
+    <version>1.8</version>
+    <scope>system</scope>
+    <systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
+	</dependency>
+		
+
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.0.43.Final</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.5</version>
+</dependency>
+		
+
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_2.11</artifactId>
+			<version>2.2.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-network-common_2.11</artifactId>
+			<version>2.2.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_2.11</artifactId>
+			<version>2.2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-hive -->
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-hive_2.11</artifactId>
+    <version>2.4.4</version>
+    <scope>provided</scope>
+</dependency>
+		
+
+		<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-common -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
+			<version>2.7.3</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-hdfs</artifactId>
+			<version>2.7.3</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency>
+		
+<!-- https://mvnrepository.com/artifact/org.scalatest/scalatest-all -->
+		<dependency>
+		    <groupId>org.scalatest</groupId>
+		    <artifactId>scalatest-all_2.11</artifactId>
+		    <version>3.0.0-M11</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>5.1.47</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/oracle/ojdbc6 -->
+<!--   <dependency>
+		<groupId>com.oracle</groupId>
+		<artifactId>ojdbc6</artifactId>
+		<version>11.2.0.4</version>
+	</dependency>
+		-->
+
+	</dependencies>
+  
+  
+ <build>
+		<plugins>
+			<!-- Configure maven-compiler-plugin to use the desired Java version -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- Use build-helper-maven-plugin to add Scala source and test source 
+				directories -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/main/scala</source>
+							</sources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>add-test-source</id>
+						<phase>generate-test-sources</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/test/scala</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Use scala-maven-plugin for Scala support -->
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>3.1.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<!-- Need to specify this explicitly, otherwise plugin won't be called 
+								when doing e.g. mvn compile -->
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
