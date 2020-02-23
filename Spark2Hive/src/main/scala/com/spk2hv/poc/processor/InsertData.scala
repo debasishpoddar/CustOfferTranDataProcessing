@@ -101,7 +101,18 @@ class InsertData {
   
     val processeddataset=dataFile
     
+    try{
     processeddataset.write.partitionBy(partition_column1,partition_column2).saveAsTable(table_name)
+        }
+    
+    catch{
+        case ex: Exception => {
+        println("Data not Inserted")
+        println(ex.printStackTrace().toString)
+        ex.printStackTrace()
+        }
+         }
+    
     
   }
   
